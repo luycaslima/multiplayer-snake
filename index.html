@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplayer Snake</title>
+  </head>
+  <body>
+    <div id="initial-screen" class="">
+      <h1>🐍 Multiplayer Snake 🐍</h1>
+      <button type="submit" class="btn" id="new-button-game">
+        Create New Game
+      </button>
+      <div>OR</div>
+      <div>
+        <input type="text" placeholder="Enter Game Code" id="game-code-input" />
+      </div>
+      <button>
+        Join Game
+      </button>
+    </div>
+    <div class="game-screen">
+      <div class="canvas-container">
+        <canvas id="pixi-canvas"></canvas>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+    
+  </body>
+</html>
