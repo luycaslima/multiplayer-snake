@@ -32,8 +32,17 @@ body {
   min-height: 100vh;
 }
 
-.game-screen{
+#initial-screen{
   display:flex;
+  flex-direction:column;
+  gap: 0.5rem;
+  margin:auto;
+  justify-content:center;
+  align-items:center;
+}
+
+.game-screen{
+  display:none;
   margin:auto;
   justify-content:center;
   align-items:center;

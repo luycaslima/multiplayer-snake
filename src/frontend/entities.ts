@@ -11,26 +11,11 @@ export class Snake implements ISnake {
     bodyPartPos: Array<Vector2>;
 
     public body: Array<Graphics>
-    constructor(pos: Vector2, size: number) {
-        //super();
+    constructor(pos: Vector2) {
         this.pos = pos;
         
         this.body = []
         this.bodyPartPos = [];
-
-        this.body.push(this.createBodyPart( size))       
-        this.body.push(this.createBodyPart( size))                
-        this.body.push(this.createBodyPart(size))  
-        
-        this.bodyPartPos.push({x: pos.x-2 * size,y: pos.y * size } as Vector2);
-        this.bodyPartPos.push({x: pos.x-1 * size,y: pos.y * size } as Vector2);
-        this.bodyPartPos.push({x: pos.x * size,y: pos.y * size } as Vector2);
-        
-
-        this.body[2].position = new Point(pos.x *size , pos.y * size);
-        this.body[1].position = new Point((pos.x - 1) * size,pos.y *size );
-        this.body[0].position = new Point((pos.x - 2) * size, pos.y * size);
-
     }
 
     public createBodyPart(size: number) : Graphics {
@@ -44,18 +29,22 @@ export class Snake implements ISnake {
 
     public updateBodyPositions(parts: Array<Vector2>,size : number): void{
         if (this.body.length !== parts.length) {
-            const part = this.createBodyPart(size);
-            this.bodyPartPos.unshift(parts[0]);
-            this.body.unshift(part);
-            this.body[0].position.x = parts[0].x * size;
-            this.body[0].position.y = parts[0].y * size;
-            Game.growSnakes(part);
+            this.expandSnake(parts[0],size);
         }
 
         for (let i = 0; i < this.body.length; i++) {
             this.body[i].position = new Point(parts[i].x * size, parts[i].y * size);
         }
        
+    }
+
+    public expandSnake(pos : Vector2,size : number) :void{
+        const part = this.createBodyPart(size);
+        this.bodyPartPos.unshift(pos);
+        this.body.unshift(part);
+        Game.growSnakes(part);
+        this.body[0].position.x = pos.x * size;
+        this.body[0].position.y = pos.y * size;
     }
 
 
